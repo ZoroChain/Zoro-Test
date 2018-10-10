@@ -1,0 +1,1 @@
+dotnet zoro-cli.dll
