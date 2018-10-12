@@ -2,7 +2,7 @@
   "ProtocolConfiguration": {
     "Magic": 1953787457,
     "AddressVersion": 23,
-    "SecondsPerBlock": 5,
+    "SecondsPerBlock": 3,
     "StandbyValidators": [
       "02e42b7e95cd9d91d8b473a340b1c2827d50715f9e95ce003587dc29513499cb08",
       "03b8d429f0d57a8cdf93dc7faf850fef23d2a17ce669bba7640cd0bcda21eafb0b",
@@ -10,10 +10,10 @@
       "031f210b12e522205295cec1e28e1420cb581d1235157015a1dbb033586530b704"
     ],
     "SeedList": [
-      "127.0.0.1:20343",
-      "127.0.0.1:20353",
-      "127.0.0.1:20363",
-      "127.0.0.1:20373"
+      "127.0.0.1:20001",
+      "127.0.0.1:20002",
+      "127.0.0.1:20003",
+      "127.0.0.1:20004"
     ],
     "SystemFee": {
       "EnrollmentTransaction": 10,
@@ -25,15 +25,15 @@
       "Path": "AppChain_{0}",
       "Chains": [
         {
-          "Hash": "46650ecd479d802040de34124b35fc3be16f1800",
-          "Port": 21031,
-          "WsPort": 21032,
+          "Hash": "835ae2bbf01d24499d99764f3c623b386bb337a4",
+          "Port": 30004,
+          "WsPort": 30014,
           "StartConsensus": true
         },
         {
-          "Hash": "577ef9c6c331efa6fd479f57f9ba4e4796c46f81",
-          "Port": 22031,
-          "WsPort": 22032,
+          "Hash": "8587f722e8595a014937316efd7a609c8d3de581",
+          "Port": 31004,
+          "WsPort": 31014,
           "StartConsensus": true
         }
       ]

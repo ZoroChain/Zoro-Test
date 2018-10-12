@@ -5,8 +5,8 @@
       "Index": "Index_{0}"
     },
     "P2P": {
-      "Port": 20343,
-      "WsPort": 20344
+      "Port": 20001,
+      "WsPort": 20011
     },
     "RPC": {
       "Port": 20342,
