@@ -1,8 +1,8 @@
-copy ..\Zoro-Cli\zoro-cli\bin\Debug\netcoreapp2.0\Zoro-Cli.dll .\
-copy ..\Zoro-Cli\zoro-cli\bin\Debug\netcoreapp2.0\Zoro.dll .\
-copy ..\Zoro-Cli\zoro-cli\bin\Debug\netcoreapp2.0\Zoro-Cli.deps.json .\
-copy ..\Zoro-Cli\zoro-cli\bin\Debug\netcoreapp2.0\Zoro-Cli.runtimeconfig.dev.json .\
-copy ..\Zoro-Cli\zoro-cli\bin\Debug\netcoreapp2.0\Zoro-Cli.runtimeconfig.json .\
+copy ..\Zoro-Cli\zoro-cli\bin\Release\netcoreapp2.0\Zoro-Cli.dll .\
+copy ..\Zoro-Cli\zoro-cli\bin\Release\netcoreapp2.0\Zoro.dll .\
+copy ..\Zoro-Cli\zoro-cli\bin\Release\netcoreapp2.0\Zoro-Cli.deps.json .\
+copy ..\Zoro-Cli\zoro-cli\bin\Release\netcoreapp2.0\Zoro-Cli.runtimeconfig.dev.json .\
+copy ..\Zoro-Cli\zoro-cli\bin\Release\netcoreapp2.0\Zoro-Cli.runtimeconfig.json .\
 
 copy Zoro-Cli.dll .\root1
 copy Zoro-Cli.dll .\root2
