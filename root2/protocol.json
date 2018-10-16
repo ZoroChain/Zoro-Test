@@ -25,13 +25,13 @@
       "Path": "AppChain_{0}",
       "Chains": [
         {
-          "Hash": "65bdc034f38d595f11f9cd076028c95009c0a303",
+          "Hash": "ce298e27c26df44ed64778df79260864b3865e1a",
           "Port": 30002,
           "WsPort": 30012,
           "StartConsensus": true
         },
         {
-          "Hash": "343a428ba29bf18296bcbaedf3db1ac42c284ebf",
+          "Hash": "d23de0a514824b33435301341cc9e5e8e8758954",
           "Port": 31002,
           "WsPort": 31012,
           "StartConsensus": true
