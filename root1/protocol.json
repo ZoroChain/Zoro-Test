@@ -35,6 +35,12 @@
           "Port": 31001,
           "WsPort": 31011,
           "StartConsensus": true
+        },
+        {
+          "Hash": "e9ee36fe6388c4a8af37af0647017c517c944c5c",
+          "Port": 32001,
+          "WsPort": 32011,
+          "StartConsensus": true
         }
       ]
     }
