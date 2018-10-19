@@ -10,10 +10,10 @@
       "031f210b12e522205295cec1e28e1420cb581d1235157015a1dbb033586530b704"
     ],
     "SeedList": [
-      "10.1.6.227:20001",
-      "10.1.6.227:20002",
-      "10.1.6.227:20003",
-      "10.1.6.227:20004"
+      "127.0.0.1:20001",
+      "127.0.0.1:20002",
+      "127.0.0.1:20003",
+      "127.0.0.1:20004"
     ],
     "SystemFee": {
       "EnrollmentTransaction": 10,
@@ -22,24 +22,13 @@
       "RegisterTransaction": 100
     },
     "AppChains": {
-      "Path": "AppChain_{0}",
+      "Path": "AppChain\\AppChain_{0}",
       "Chains": [
-        {
-          "Hash": "979ab65ece2d68e433e5cd47e9ea61541d57234e",
-          "Port": 30002,
-          "WsPort": 30012,
-          "StartConsensus": true
-        },
-        {
-          "Hash": "7e9c2a9a2c634ad685a8546b7940f7d9522e6bf7",
-          "Port": 31002,
-          "WsPort": 31012,
-          "StartConsensus": true
-        },
-        {
-          "Hash": "e9ee36fe6388c4a8af37af0647017c517c944c5c",
-          "Port": 32002,
-          "WsPort": 32012,
+        
+		{
+          "Hash": "d444fb533af0cf30a5e93a69e5dd9db825aaca26",
+          "Port": 33002,
+          "WsPort": 33012,
           "StartConsensus": true
         }
       ]
