@@ -1,6 +1,6 @@
 ﻿{
   "ProtocolConfiguration": {
-    "Magic": 1953787457,
+    "Magic": 58225482,
     "AddressVersion": 23,
     "SecondsPerBlock": 3,
     "StandbyValidators": [
@@ -22,7 +22,7 @@
       "RegisterTransaction": 100
     },
     "AppChains": {
-      "Path": "AppChain/AppChain_{0}",
+      "Path": "AppChain/{0}_{1}",
       "Chains": [
         {
           "Hash": "076605fcecb605776fdd22f48506c258155b8474",
