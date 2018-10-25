@@ -22,13 +22,24 @@
       "RegisterTransaction": 100
     },
     "AppChains": {
-      "Path": "AppChain\\AppChain_{0}",
+      "Path": "AppChain/AppChain_{0}",
       "Chains": [
-        
-		{
-          "Hash": "d444fb533af0cf30a5e93a69e5dd9db825aaca26",
-          "Port": 33003,
-          "WsPort": 33013,
+        {
+          "Hash": "076605fcecb605776fdd22f48506c258155b8474",
+          "Port": 30003,
+          "WsPort": 30013,
+          "StartConsensus": true
+        },
+        {
+          "Hash": "73b47cbc3456edb4a2ed555ed19b207b96a90f89",
+          "Port": 31003,
+          "WsPort": 31013,
+          "StartConsensus": true
+        },
+        {
+          "Hash": "a71c8979f7de87bfaa6543cb4b6b2731c6583700",
+          "Port": 32003,
+          "WsPort": 32013,
           "StartConsensus": true
         }
       ]
