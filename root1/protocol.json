@@ -38,7 +38,7 @@
         },
         {
           "Hash": "a71c8979f7de87bfaa6543cb4b6b2731c6583700",
-          "Port": 32005,
+          "Port": 32001,
           "WsPort": 32011,
           "StartConsensus": true
         }
