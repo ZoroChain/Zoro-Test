@@ -25,19 +25,19 @@
       "Path": "AppChain/{0}_{1}",
       "Chains": [
         {
-          "Hash": "076605fcecb605776fdd22f48506c258155b8474",
+          "Hash": "be182ced606427f72e090ac721af664e5050a535",
           "Port": 30001,
           "WsPort": 30011,
           "StartConsensus": true
         },
         {
-          "Hash": "73b47cbc3456edb4a2ed555ed19b207b96a90f89",
+          "Hash": "69688904c76f09207c3ea07ac1dbeb8912656e71",
           "Port": 31001,
           "WsPort": 31011,
           "StartConsensus": true
         },
         {
-          "Hash": "a71c8979f7de87bfaa6543cb4b6b2731c6583700",
+          "Hash": "93a78dfa619bd601c76b4fb421bce3703eebf911",
           "Port": 32001,
           "WsPort": 32011,
           "StartConsensus": true
