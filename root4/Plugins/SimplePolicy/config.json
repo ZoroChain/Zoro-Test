@@ -1,11 +1,11 @@
 ﻿{
   "PluginConfiguration": {
-    "MaxTransactionsPerBlock": 500,
-    "MaxFreeTransactionsPerBlock": 20,
+    "MaxTransactionsPerBlock": 5000000,
+    "MaxFreeTransactionsPerBlock": 5000000,
     "BlockedAccounts": {
       "Type": "AllowAll",
       "List": []
     },
-    "DisabledLogSources": []
+    "DisabledLogSources": [ "Consensus" ]
   }
 }
