@@ -1,12 +1,12 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "4383054d882dceb5aa4da00954a9f9279a9c8144"
+    "signature": "d4ad9f93e286a15ce6b207d55ed0748fc8fe74a2"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.0": {
-      "Zoro-Cli/0.1.0": {
+      "Zoro-Cli/0.1.1": {
         "dependencies": {
           "ZoroChain": "0.1.1"
         },
@@ -1125,13 +1125,16 @@
           "System.Text.Encodings.Web": "4.5.0"
         },
         "runtime": {
-          "Zoro.dll": {}
+          "lib/netstandard2.0/Zoro.dll": {
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
+          }
         }
       }
     }
   },
   "libraries": {
-    "Zoro-Cli/0.1.0": {
+    "Zoro-Cli/0.1.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1851,9 +1854,11 @@
       "hashPath": "system.threading.threadpool.4.3.0.nupkg.sha512"
     },
     "ZoroChain/0.1.1": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SYed9QJxSpqeQxszcZoXeNSPUtuhdmjk+mGvNHiWpzUJkSugpT1HROYY9g2tlbZvhW8//eidazMx/3aKCb9mqQ==",
+      "path": "zorochain/0.1.1",
+      "hashPath": "zorochain.0.1.1.nupkg.sha512"
     }
   }
 }
