@@ -1,0 +1,10 @@
+[16:20:44.429] OnStart hash:0x0000000000000000000000000000000000000000
+[16:20:44.455] initialize: height=1 view=0 index=0 role=Backup
+[16:20:46.464] timeout: height=1 view=0 state=Backup
+[16:20:46.466] request change view: height=1 view=0 nv=1 state=Backup, ViewChanging
+[16:20:50.472] timeout: height=1 view=0 state=Backup, ViewChanging
+[16:20:50.473] request change view: height=1 view=0 nv=2 state=Backup, ViewChanging
+[16:20:58.481] timeout: height=1 view=0 state=Backup, ViewChanging
+[16:20:58.484] request change view: height=1 view=0 nv=3 state=Backup, ViewChanging
+[16:21:14.492] timeout: height=1 view=0 state=Backup, ViewChanging
+[16:21:14.511] request change view: height=1 view=0 nv=4 state=Backup, ViewChanging
