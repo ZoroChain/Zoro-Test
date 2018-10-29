@@ -1,4 +1,4 @@
-copy ..\Zoro-Plugins\ApplicationLogs\ApplicationLogs.dll .\
+copy ..\Zoro-Plugins\ApplicationLogs\bin\debug\netstandard2.0\ApplicationLogs.dll .\
 copy ..\Zoro-Plugins\ApplicationLogs\ApplicationLogs\config.json .\
 
 copy ApplicationLogs.dll .\root1\Plugins
@@ -19,7 +19,7 @@ copy config.json .\root4\Plugins\ApplicationLogs\
 del ApplicationLogs.dll
 del config.json
 
-copy ..\Zoro-Plugins\SimplePolicy\SimplePolicy.dll .\
+copy ..\Zoro-Plugins\SimplePolicy\bin\debug\netstandard2.0\SimplePolicy.dll .\
 copy ..\Zoro-Plugins\SimplePolicy\SimplePolicy\config.json .\
 
 copy SimplePolicy.dll .\root1\Plugins
