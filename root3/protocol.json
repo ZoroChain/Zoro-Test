@@ -20,23 +20,6 @@
       "IssueTransaction": 5,
       "PublishTransaction": 5,
       "RegisterTransaction": 100
-    },
-    "AppChains": {
-      "Path": "AppChain/{0}_{1}",
-      "Chains": [
-        {
-          "Hash": "979ab65ece2d68e433e5cd47e9ea61541d57234e",
-          "Port": 30003,
-          "WsPort": 30013,
-          "StartConsensus": true
-        },
-        {
-          "Hash": "7e9c2a9a2c634ad685a8546b7940f7d9522e6bf7",
-          "Port": 31003,
-          "WsPort": 31013,
-          "StartConsensus": true
-        }
-      ]
     }
   }
 }

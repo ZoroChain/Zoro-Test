@@ -1,0 +1,1 @@
+﻿{"ProtocolConfiguration":{"Path":"AppChain\/{0}_{1}","Chains":[{"Hash":"9a1628f3e1d2ea58bd744e4719dbaa8e73166776","Port":30004,"WsPort":0,"StartConsensus":true},{"Hash":"6d2063c0dba1744abf5ec8765dbf4da9f512ecbf","Port":31004,"WsPort":0,"StartConsensus":true},{"Hash":"86be3a733b798fd18d38f6fd398b55820369f8c6","Port":32004,"WsPort":0,"StartConsensus":true}]}}
