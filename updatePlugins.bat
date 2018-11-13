@@ -40,20 +40,4 @@ copy config.json .\root4\Plugins\SimplePolicy\
 del SimplePolicy.dll
 del config.json
 
-copy ..\Zoro-Plugins\AppChainPlugin\bin\Debug\netstandard2.0\AppChainPlugin.dll .\
-copy ..\Zoro-Plugins\AppChainPlugin\bin\Debug\netstandard2.0\AppChainPlugin\config.json .\
-
-copy AppChainPlugin.dll .\root1\Plugins
-copy AppChainPlugin.dll .\root2\Plugins
-copy AppChainPlugin.dll .\root3\Plugins
-copy AppChainPlugin.dll .\root4\Plugins
-
-mkdir .\root1\Plugins\AppChainPlugin
-mkdir .\root2\Plugins\AppChainPlugin
-mkdir .\root3\Plugins\AppChainPlugin
-mkdir .\root4\Plugins\AppChainPlugin
-
-del AppChainPlugin.dll
-del config.json
-
 pause
