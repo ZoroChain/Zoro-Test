@@ -1,0 +1,9 @@
+﻿{
+  "AppChainConfiguration": {
+    "NetworkType": "LAN",
+    "Port": 21001,
+    "WsPort": 0,
+    "KeyNames": ["Test", "App", "Game"],
+    "KeyHashes": []
+  }
+}
