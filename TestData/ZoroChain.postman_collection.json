@@ -85,18 +85,20 @@
 									"",
 									"console.log('responseJson', responseJson);",
 									"",
+									"let i = 0;",
 									"for (let hash of responseJson.result.hashlist) {",
 									"    console.log(hash);",
 									"",
-									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=1&method=getappchainstate&params=[\"${hash}\"]`, (err, response) => {",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=2&method=getappchainstate&params=[\"${hash}\"]`, (err, response) => {",
+									"        i++;",
 									"        console.log(hash);",
 									"        console.log(response);",
 									"        let jsonData = response.json();",
 									"        console.log(jsonData);",
-									"        pm.test(\"Response Status is 200.\", () => {",
+									"        pm.test(`${i}. ${hash}. Response Status is response.code. `, () => {",
 									"            pm.expect(response.code).to.eql(200);",
 									"        });",
-									"        pm.test(\"Got right hash.\", () => {",
+									"        pm.test(`${i}. ${hash}. Got right hash. ${jsonData.result.hash}`, () => {",
 									"            pm.expect(jsonData.result.hash).to.eql(hash);",
 									"        });",
 									"    });",
@@ -116,7 +118,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=1&method=getappchainhashlist&params=[]",
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=2&method=getappchainhashlist&params=[]",
 							"protocol": "http",
 							"host": [
 								"{{Address}}"
@@ -132,7 +134,7 @@
 								},
 								{
 									"key": "id",
-									"value": "1"
+									"value": "2"
 								},
 								{
 									"key": "method",
@@ -161,18 +163,21 @@
 									"",
 									"console.log('responseJson', responseJson);",
 									"",
+									"let i = 0;",
+									"",
 									"for (let hash of responseJson.result.hashlist) {",
 									"    console.log(hash);",
 									"",
-									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=3&method=getbestblockhash&params=[\"${hash}\",]`, (err, response) => {",
-									"        console.log(hash);",
-									"        console.log(response);",
-									"        pm.test(\"Response Status is 200.\", () => {",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=3&method=getbestblockhash&params=[\"${hash}\"]`, (err, response) => {",
+									"        i++;",
+									"        console.log('hash', hash);",
+									"        console.log('response', response);",
+									"        pm.test(`${i}. ${hash}. Response Status is ${response.code}`, () => {",
 									"            let jsonData = response.json();",
 									"            console.log(jsonData);",
 									"            pm.expect(response.code).to.eql(200);",
 									"        });",
-									"        pm.test(\"Got best block hash.\", () => {",
+									"        pm.test(`${i}. ${hash}. Got best block hash. ${ response.json().result}`, () => {",
 									"            let jsonData = response.json();",
 									"            pm.expect(jsonData.result).to.include('0x');",
 									"        });",
@@ -222,6 +227,502 @@
 							]
 						},
 						"description": "1.getappchainhashlist\t返回所有已创建的应用链的Hash列表\r\n2.getappchainstate\t返回某个应用链的信息"
+					},
+					"response": []
+				},
+				{
+					"name": "getblock_hash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d66760-74bf-427d-bf86-835842d397a0",
+								"exec": [
+									"/*jshint loopfunc:true */",
+									"let responseJson = pm.response.json();",
+									"",
+									"console.log('responseJson', responseJson);",
+									"",
+									"let i = 0;",
+									"",
+									"for (let hash of responseJson.result.hashlist) {",
+									"    console.log(hash);",
+									"",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=4&method=getbestblockhash&params=[\"${hash}\"]`, (err, response) => {",
+									"",
+									"        let jsonData = response.json();",
+									"        let bestBlockHash = jsonData.result;",
+									"        // pm.expect(jsonData.result).to.include('0x');",
+									"            ",
+									"        pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=4&method=getblock&params=[\"${hash}\", \"${bestBlockHash}\"]`, (err, response) => {",
+									"        ",
+									"            i++;",
+									"        ",
+									"            pm.test(`${i}. ${hash}. Response Status is ${response.code}`, () => {",
+									"                let jsonData = response.json();",
+									"                console.log(jsonData);",
+									"                pm.expect(response.code).to.eql(200);",
+									"            });",
+									"            ",
+									"            pm.test(`${i}. ${hash}. Got block info based on designated hash value`, () => {",
+									"                let jsonData = response.json();",
+									"                console.log(jsonData);",
+									"                pm.expect(jsonData.result).to.not.eql(\"\");",
+									"            });",
+									"        });",
+									"    });",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=4&method=getappchainhashlist&params=[]",
+							"protocol": "http",
+							"host": [
+								"{{Address}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "jsonrpc",
+									"value": "2.0"
+								},
+								{
+									"key": "id",
+									"value": "4"
+								},
+								{
+									"key": "method",
+									"value": "getappchainhashlist"
+								},
+								{
+									"key": "params",
+									"value": "[]"
+								}
+							]
+						},
+						"description": "1.getappchainhashlist\t返回所有已创建的应用链的Hash列表\r\n2.getappchainstate\t返回某个应用链的信息"
+					},
+					"response": []
+				},
+				{
+					"name": "getblock_index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d66760-74bf-427d-bf86-835842d397a0",
+								"exec": [
+									"/*jshint loopfunc:true */",
+									"let responseJson = pm.response.json();",
+									"",
+									"console.log('responseJson', responseJson);",
+									"",
+									"let i = 0;",
+									"",
+									"for (let hash of responseJson.result.hashlist) {",
+									"    console.log(hash);",
+									"",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=4&method=getbestblockhash&params=[\"${hash}\"]`, (err, response) => {",
+									"        ",
+									"        let jsonData = response.json();",
+									"        let bestBlockHash = jsonData.result;",
+									"        pm.expect(jsonData.result).to.include('0x');",
+									"            ",
+									"        pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=4&method=getblock&params=[\"${hash}\", 1]`, (err, response) => {",
+									"            i++;",
+									"            pm.test(`${i}. ${hash}. Response Status is ${response.code}`, () => {",
+									"                let jsonData = response.json();",
+									"                console.log(jsonData);",
+									"                pm.expect(response.code).to.eql(200);",
+									"            });",
+									"            ",
+									"            pm.test(`${i}. ${hash}. Got block info based on designated hash value`, () => {",
+									"                let jsonData = response.json();",
+									"                console.log(jsonData);",
+									"                pm.expect(jsonData.result).to.not.eql(\"\");",
+									"            });",
+									"        });",
+									"    });",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=4&method=getappchainhashlist&params=[]",
+							"protocol": "http",
+							"host": [
+								"{{Address}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "jsonrpc",
+									"value": "2.0"
+								},
+								{
+									"key": "id",
+									"value": "4"
+								},
+								{
+									"key": "method",
+									"value": "getappchainhashlist"
+								},
+								{
+									"key": "params",
+									"value": "[]"
+								}
+							]
+						},
+						"description": "1.getappchainhashlist\t返回所有已创建的应用链的Hash列表\r\n2.getappchainstate\t返回某个应用链的信息"
+					},
+					"response": []
+				},
+				{
+					"name": "getblockcount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d66760-74bf-427d-bf86-835842d397a0",
+								"exec": [
+									"/*jshint loopfunc:true */",
+									"let responseJson = pm.response.json();",
+									"",
+									"console.log('responseJson', responseJson);",
+									"let i = 0;",
+									"for (let hash of responseJson.result.hashlist) {",
+									"    console.log(hash);",
+									"",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=5&method=getblockcount&params=[\"${hash}\"]`, (err, response) => {",
+									"        i++;",
+									"        let jsonData = response.json();",
+									"        console.log('getblockcount', jsonData);",
+									"",
+									"        pm.test(`${i}. ${hash}. Response Status is ${response.code}`, () => {",
+									"            let jsonData = response.json();",
+									"            console.log(jsonData);",
+									"            pm.expect(response.code).to.eql(200);",
+									"        });",
+									"            ",
+									"        pm.test(\"Acquire the number of blocks of the main chain\", () => {",
+									"            let jsonData = response.json();",
+									"            console.log(jsonData);",
+									"            pm.expect(jsonData.result).to.gt(0);",
+									"        });",
+									"    });",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=5&method=getappchainhashlist&params=[]",
+							"protocol": "http",
+							"host": [
+								"{{Address}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "jsonrpc",
+									"value": "2.0"
+								},
+								{
+									"key": "id",
+									"value": "5"
+								},
+								{
+									"key": "method",
+									"value": "getappchainhashlist"
+								},
+								{
+									"key": "params",
+									"value": "[]"
+								}
+							]
+						},
+						"description": "acquire the number of blocks of the chain"
+					},
+					"response": []
+				},
+				{
+					"name": "getblockhash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d66760-74bf-427d-bf86-835842d397a0",
+								"exec": [
+									"/*jshint loopfunc:true */",
+									"let responseJson = pm.response.json();",
+									"",
+									"console.log('responseJson', responseJson);",
+									"",
+									"let i = 0;",
+									"",
+									"for (let hash of responseJson.result.hashlist) {",
+									"    console.log(hash);",
+									"",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=6&method=getblockhash&params=[\"${hash}\", 1]`, (err, response) => {",
+									"        i++;",
+									"        let jsonData = response.json();",
+									"        console.log('getblockhash', jsonData);",
+									"        pm.test(`${i}. ${hash}. Response Status is ${response.code}`, () => {",
+									"            let jsonData = response.json();",
+									"            console.log(jsonData);",
+									"            pm.expect(response.code).to.eql(200);",
+									"        });",
+									"        pm.test(\"Return block hash value based on designated index\", () => {",
+									"            let jsonData = response.json();",
+									"            console.log(jsonData);",
+									"            pm.expect(jsonData.result).to.include('0x');",
+									"        });",
+									"    });",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=6&method=getappchainhashlist&params=[]",
+							"protocol": "http",
+							"host": [
+								"{{Address}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "jsonrpc",
+									"value": "2.0"
+								},
+								{
+									"key": "id",
+									"value": "6"
+								},
+								{
+									"key": "method",
+									"value": "getappchainhashlist"
+								},
+								{
+									"key": "params",
+									"value": "[]"
+								}
+							]
+						},
+						"description": "acquire the number of blocks of the chain"
+					},
+					"response": []
+				},
+				{
+					"name": "getconnectioncount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d66760-74bf-427d-bf86-835842d397a0",
+								"exec": [
+									"/*jshint loopfunc:true */",
+									"let responseJson = pm.response.json();",
+									"",
+									"console.log('responseJson', responseJson);",
+									"let i = 0;",
+									"for (let hash of responseJson.result.hashlist) {",
+									"    console.log(hash);",
+									"",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=7&method=getconnectioncount&params=[\"${hash}\"]`, (err, response) => {",
+									"        i++;",
+									"        let jsonData = response.json();",
+									"        console.log('getconnectioncount', jsonData);",
+									"        pm.test(`${i}. ${hash}. Response Status is ${response.code}`, () => {",
+									"            let jsonData = response.json();",
+									"            console.log(jsonData);",
+									"            pm.expect(response.code).to.eql(200);",
+									"        });",
+									"        pm.test(\"Acquire the number of connections on your node\", () => {",
+									"            let jsonData = response.json();",
+									"            console.log(jsonData);",
+									"            pm.expect(jsonData.result).to.gte(0);",
+									"        });",
+									"    });",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=7&method=getappchainhashlist&params=[]",
+							"protocol": "http",
+							"host": [
+								"{{Address}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "jsonrpc",
+									"value": "2.0"
+								},
+								{
+									"key": "id",
+									"value": "7"
+								},
+								{
+									"key": "method",
+									"value": "getappchainhashlist"
+								},
+								{
+									"key": "params",
+									"value": "[]"
+								}
+							]
+						},
+						"description": "acquire the number of blocks of the chain"
+					},
+					"response": []
+				},
+				{
+					"name": "getrawmempool",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d66760-74bf-427d-bf86-835842d397a0",
+								"exec": [
+									"/*jshint loopfunc:true */",
+									"let responseJson = pm.response.json();",
+									"",
+									"console.log('responseJson', responseJson);",
+									"let i = 0;",
+									"for (let hash of responseJson.result.hashlist) {",
+									"    console.log(hash);",
+									"",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=8&method=getrawmempool&params=[\"${hash}\"]`, (err, response) => {",
+									"        i++;",
+									"        let jsonData = response.json();",
+									"        console.log('getrawmempool', jsonData);",
+									"        pm.test(`${i}. ${hash}. Response Status is ${response.code}`, () => {",
+									"            let jsonData = response.json();",
+									"            console.log(jsonData);",
+									"            pm.expect(response.code).to.eql(200);",
+									"        });",
+									"        pm.test(\"Acquire unconfirmed transactions in the raw memory\", () => {",
+									"            let jsonData = response.json();",
+									"            console.log(jsonData);",
+									"            pm.expect(jsonData.result.length).to.gte(0);",
+									"        });",
+									"    });",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=8&method=getappchainhashlist&params=[]",
+							"protocol": "http",
+							"host": [
+								"{{Address}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "jsonrpc",
+									"value": "2.0"
+								},
+								{
+									"key": "id",
+									"value": "8"
+								},
+								{
+									"key": "method",
+									"value": "getappchainhashlist"
+								},
+								{
+									"key": "params",
+									"value": "[]"
+								}
+							]
+						},
+						"description": "acquire the number of blocks of the chain"
 					},
 					"response": []
 				}
