@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "f2689e62-a95c-41ce-bac9-26bf527bee18",
+		"name": "ZoroChain",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ApiBlackboxTest",
+			"item": [
+				{
+					"name": "getappchainhashlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d66760-74bf-427d-bf86-835842d397a0",
+								"exec": [
+									"/*jshint loopfunc:true */",
+									"let responseJson = pm.response.json();",
+									"",
+									"pm.test(\"Response Status is 200.\", () => {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"Got app chains' hash list.\", () => {",
+									"    pm.expect(responseJson.result.hashlist.length).to.gt(0);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=1&method=getappchainhashlist&params=[]",
+							"protocol": "http",
+							"host": [
+								"{{Address}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "jsonrpc",
+									"value": "2.0"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "method",
+									"value": "getappchainhashlist"
+								},
+								{
+									"key": "params",
+									"value": "[]"
+								}
+							]
+						},
+						"description": "1.getappchainhashlist\t返回所有已创建的应用链的Hash列表\r\n2.getappchainstate\t返回某个应用链的信息"
+					},
+					"response": []
+				},
+				{
+					"name": "getappchainstate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d66760-74bf-427d-bf86-835842d397a0",
+								"exec": [
+									"/*jshint loopfunc:true */",
+									"let responseJson = pm.response.json();",
+									"",
+									"console.log('responseJson', responseJson);",
+									"",
+									"for (let hash of responseJson.result.hashlist) {",
+									"    console.log(hash);",
+									"",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=1&method=getappchainstate&params=[\"${hash}\"]`, (err, response) => {",
+									"        console.log(hash);",
+									"        console.log(response);",
+									"        let jsonData = response.json();",
+									"        console.log(jsonData);",
+									"        pm.test(\"Response Status is 200.\", () => {",
+									"            pm.expect(response.code).to.eql(200);",
+									"        });",
+									"        pm.test(\"Got right hash.\", () => {",
+									"            pm.expect(jsonData.result.hash).to.eql(hash);",
+									"        });",
+									"    });",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=1&method=getappchainhashlist&params=[]",
+							"protocol": "http",
+							"host": [
+								"{{Address}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "jsonrpc",
+									"value": "2.0"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "method",
+									"value": "getappchainhashlist"
+								},
+								{
+									"key": "params",
+									"value": "[]"
+								}
+							]
+						},
+						"description": "1.getappchainhashlist\t返回所有已创建的应用链的Hash列表\r\n2.getappchainstate\t返回某个应用链的信息"
+					},
+					"response": []
+				},
+				{
+					"name": "getbestblockhash",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d66760-74bf-427d-bf86-835842d397a0",
+								"exec": [
+									"/*jshint loopfunc:true */",
+									"let responseJson = pm.response.json();",
+									"",
+									"console.log('responseJson', responseJson);",
+									"",
+									"for (let hash of responseJson.result.hashlist) {",
+									"    console.log(hash);",
+									"",
+									"    pm.sendRequest(`http://${pm.variables.get(\"Address\")}:${pm.variables.get(\"Port\")}/?jsonrpc=2.0&id=3&method=getbestblockhash&params=[\"${hash}\",]`, (err, response) => {",
+									"        console.log(hash);",
+									"        console.log(response);",
+									"        pm.test(\"Response Status is 200.\", () => {",
+									"            let jsonData = response.json();",
+									"            console.log(jsonData);",
+									"            pm.expect(response.code).to.eql(200);",
+									"        });",
+									"        pm.test(\"Got best block hash.\", () => {",
+									"            let jsonData = response.json();",
+									"            pm.expect(jsonData.result).to.include('0x');",
+									"        });",
+									"    });",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{Address}}:{{Port}}/?jsonrpc=2.0&id=3&method=getappchainhashlist&params=[]",
+							"protocol": "http",
+							"host": [
+								"{{Address}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "jsonrpc",
+									"value": "2.0"
+								},
+								{
+									"key": "id",
+									"value": "3"
+								},
+								{
+									"key": "method",
+									"value": "getappchainhashlist"
+								},
+								{
+									"key": "params",
+									"value": "[]"
+								}
+							]
+						},
+						"description": "1.getappchainhashlist\t返回所有已创建的应用链的Hash列表\r\n2.getappchainstate\t返回某个应用链的信息"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
