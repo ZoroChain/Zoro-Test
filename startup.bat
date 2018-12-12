@@ -1,11 +1,11 @@
 cd root1
-start dotnet zoro-cli.dll
+start startup.bat
 
 cd ..\root2
-start dotnet zoro-cli.dll
+start startup.bat
 
 cd ..\root3
-start dotnet zoro-cli.dll
+start startup.bat
 
 cd ..\root4
-start dotnet zoro-cli.dll
+start startup.bat
