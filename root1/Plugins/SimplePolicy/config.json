@@ -1,7 +1,7 @@
 ﻿{
   "PluginConfiguration": {
-    "MaxTransactionsPerBlock": 50000,
-    "MaxFreeTransactionsPerBlock": 50000,
+    "MaxTransactionsPerBlock": 500,
+    "MaxFreeTransactionsPerBlock": 500,
     "BlockedAccounts": {
       "Type": "AllowAll",
       "List": []
