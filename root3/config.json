@@ -15,7 +15,7 @@
       "SslCertPassword": ""
     },
     "UnlockWallet": {
-      "Path": "wallet.json",
+      "Path": "wallet3.json",
       "Password": "123456",
       "StartConsensus": true,
       "IsActive": true
